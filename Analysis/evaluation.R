@@ -63,7 +63,7 @@ AIC(cox_score_cases)
 coxphw_score_cases=coxphw(Surv(Interval.RP.to.BCR.or.last.contact.death,BCR_status)~PredictionCaseLevel,data=data_test_cases,robust=TRUE)
 summary(coxphw_score_cases)
 
-###### CALIBRATION ######
+###### CALIBRATION EVALUATION ######
 f <- cph(Surv(Interval.RP.to.BCR.or.last.contact.death, BCR_status) ~ PredictionCaseLevel, x=TRUE, y=TRUE, surv=TRUE, time.inc=120, data=data_test_cases)
 cal <- calibrate(f, u=120, cmethod='KM', m=50, B=2000)
 plot(cal)
@@ -71,5 +71,5 @@ plot(cal)
 #### CATEGORIZATION #####
 ### USE the CHAID algorithms provided by SPSS and use the cutoffs to categorize the patients
 ### Cutoffs are: 0.06,0.43, 0.75
- 
+
 #### COMPARISON BETWEEE AI AND GG ####
