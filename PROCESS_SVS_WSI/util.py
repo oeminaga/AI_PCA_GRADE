@@ -18,11 +18,12 @@ import pandas as pd
 import pyvips
 random.seed(1234)  
 plt.figure(figsize=(20,20)) 
-TestUnit = False
 
-fold="/home/truebinding/coro/H&E (Karun Mutreja 4)/"
+TestUnit = False
+fold="/home/test_WSI"
 if TestUnit:
     filenames=os.listdir(fold)
+
 def GetMaskWithReference(ref, size=(512,512) ,threshold=2, channel=0,strategy=0):
     if isinstance(ref, openslide.OpenSlide):
         ref_img=np.array(ref.get_thumbnail(size))
