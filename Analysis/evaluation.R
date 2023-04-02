@@ -1,4 +1,10 @@
+###################
+# CODE TO EVALUATE THE MODELS AND PREDICT THE RISK OF BCR RELAPSE or CANCER DEATH
+# REDUCED VERSION OF THE CODE TO MITIGATE THE CODE REDUNDANCY AND TO MAKE IT EASIER TO READ
+# DATA CLEAN AND UNIFICATION STEPS ARE NOT SHOWN FOR SIMPLICITY AND READABILITY
+###################
 #### LIBRARIES ####
+
 library(rms)
 library(classifierplots)
 library(readr)
@@ -34,6 +40,9 @@ data_test$Patch_8= data_test$`8`
 patches_data=data_test[,c("Patch_0","Patch_1","Patch_2","Patch_3","Patch_4","Patch_5","Patch_6", "Patch_7", "Patch_8")]
 data_test$PredictionScore=rowMeans(patches_data)
 data_test=data_test[data_test$Interval.RP.to.BCR.or.last.contact.death>0,]
+
+#### FOR WSI PATCHES ####
+# We took the score mean of the patches per case as shown below and then we used the CHAID algorithm to categorize the patients into 4 groups
 
 #### CASE-LEVEL PREDICTION
 vl_case_pred = c()
@@ -244,6 +253,182 @@ ggsurv_km_test_set_GG <- ggsurvplot(
 )
 ggsurv_km_test_set_GG
 
+##############################################
+#                                            #
+#  Cancer-specific mortality                 #      
+#                                            #
+##############################################
+########## COXPHW ##########
+# --- Univariate Analysis --- #
+## CPCBN ##
+UnivariateAnalysis.CSS.CPCBN.pT_stage=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pT_stage,data=data_test_cases,robust=TRUE)
+UnivariateAnalysis.CSS.CPCBN.GG_RPE=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~GG_RPE,data=data_test_cases,robust=TRUE)
+UnivariateAnalysis.CSS.CPCBN.PredictionCaseLevel=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~PredictionCaseLevel,data=data_test_cases,robust=TRUE)
+
+summary(UnivariateAnalysis.CSS.CPCBN.pT_stage)
+summary(UnivariateAnalysis.CSS.CPCBN.GG_RPE)
+summary(UnivariateAnalysis.CSS.CPCBN.PredictionCaseLevel
+
+# OBTAINING c-index, BIC and AIC
+UnivariateAnalysis.CSS.CPCBN.pT_stage=coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pT_stage,data=data_test_cases,x=TRUE,y=TRUE, )
+UnivariateAnalysis.CSS.CPCBN.GG_RPE=coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~GG_RPE,data=data_test_cases,x=TRUE,y=TRUE, )
+UnivariateAnalysis.CSS.CPCBN.PredictionCaseLevel=coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~PredictionCaseLevel,data=data_test_cases,x=TRUE,y=TRUE, )
+summary(UnivariateAnalysis.CSS.CPCBN.pT_stage)
+BIC(UnivariateAnalysis.CSS.CPCBN.pT_stage)
+AIC(UnivariateAnalysis.CSS.CPCBN.pT_stage)
+
+summary(UnivariateAnalysis.CSS.CPCBN.GG_RPE)
+BIC(UnivariateAnalysis.CSS.CPCBN.GG_RPE)
+AIC(UnivariateAnalysis.CSS.CPCBN.GG_RPE)
+
+summary(UnivariateAnalysis.CSS.CPCBN.PredictionCaseLevel)
+BIC(UnivariateAnalysis.CSS.CPCBN.PredictionCaseLevel)
+AIC(UnivariateAnalysis.CSS.CPCBN.PredictionCaseLevel)
+
+## PROCURE ##
+UnivariateAnalysis.CSS.PROCURE.pT_stage=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pT_stage,data=data_test_cases,robust=TRUE)
+UnivariateAnalysis.CSS.PROCURE.pN_stage=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pN_stage,data=data_test_cases,robust=TRUE)
+UnivariateAnalysis.CSS.PROCURE.PredictionCaseLevel=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~PredictionCaseLevel,data=data_test_cases,robust=TRUE)
+summary(UnivariateAnalysis.CSS.PROCURE.pT_stage)
+summary(UnivariateAnalysis.CSS.PROCURE.pN_stage)
+summary(UnivariateAnalysis.CSS.PROCURE.PredictionCaseLevel)
+
+# OBTAINING c-index, BIC and AIC
+UnivariateAnalysis.CSS.PROCURE.pT_stage=coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pT_stage,data=data_test_cases,x=TRUE,y=TRUE, )
+UnivariateAnalysis.CSS.PROCURE.pN_stage=coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pN_stage,data=data_test_cases,x=TRUE,y=TRUE, )
+UnivariateAnalysis.CSS.PROCURE.GG_RPE=coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~GG_RPE,data=data_test_cases,x=TRUE,y=TRUE, )
+UnivariateAnalysis.CSS.PROCURE.PredictionCaseLevel=coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~PredictionCaseLevel,data=data_test_cases,x=TRUE,y=TRUE, )
+
+summary(UnivariateAnalysis.CSS.PROCURE.pT_stage)
+BIC(UnivariateAnalysis.CSS.PROCURE.pT_stage)
+AIC(UnivariateAnalysis.CSS.PROCURE.pT_stage)
+
+summary(UnivariateAnalysis.CSS.PROCURE.pN_stage)
+BIC(UnivariateAnalysis.CSS.PROCURE.pN_stage)
+AIC(UnivariateAnalysis.CSS.PROCURE.pN_stage)
+
+summary(UnivariateAnalysis.CSS.PROCURE.GG_RPE)
+BIC(UnivariateAnalysis.CSS.PROCURE.GG_RPE)
+AIC(UnivariateAnalysis.CSS.PROCURE.GG_RPE)
+
+summary(UnivariateAnalysis.CSS.PROCURE.PredictionCaseLevel)
+BIC(UnivariateAnalysis.CSS.PROCURE.PredictionCaseLevel)
+AIC(UnivariateAnalysis.CSS.PROCURE.PredictionCaseLevel)
+
+## PLCO ##
+UnivariateAnalysis.CSS.PLCO.PredictionCaseLevel=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~PredictionCaseLevel,data=data_test_cases,robust=TRUE)
+UnivariateAnalysis.CSS.PLCO.GS_RPE=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~GS_RPE,data=data_test_cases,robust=TRUE)
+
+summary(UnivariateAnalysis.CSS.PLCO.PredictionCaseLevel)
+summary(UnivariateAnalysis.CSS.PLCO.GS_RPE)
+
+# OBTAINING c-index, BIC and AIC
+UnivariateAnalysis.CSS.PLCO.PredictionCaseLevel=coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~PredictionCaseLevel,data=data_test_cases,x=TRUE,y=TRUE, )
+UnivariateAnalysis.CSS.PLCO.GS_RPE=coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~GS_RPE,data=data_test_cases,x=TRUE,y=TRUE, )
+
+summary(UnivariateAnalysis.CSS.PLCO.PredictionCaseLevel)
+BIC(UnivariateAnalysis.CSS.PLCO.PredictionCaseLevel)
+AIC(UnivariateAnalysis.CSS.PLCO.PredictionCaseLevel)
+
+summary(UnivariateAnalysis.CSS.PLCO.GS_RPE)
+BIC(UnivariateAnalysis.CSS.PLCO.GS_RPE)
+AIC(UnivariateAnalysis.CSS.PLCO.GS_RPE)
+
+
+# --- Multivariate Analyses --- #
+## CPCBN ##
+MultivariateAnalysis.CSS.CPCBN=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pT_stage+GG_RPE+PredictionCaseLevel,data=data_test_cases,robust=TRUE)
+summary(MultivariateAnalysis.CSS.CPCBN)
+
+#obtaining c-index
+MultivariateAnalysis.CSS.CPCBN=coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pT_stage+GG_RPE+PredictionCaseLevel,data=data_test_cases,x=TRUE,y=TRUE, )
+summary(MultivariateAnalysis.CSS.CPCBN)
+
+## PROCURE ##
+MultivariateAnalysis.CSS.PROCURE=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pT_stage+pN_stage+PredictionCaseLevel,data=data_test_cases,robust=TRUE)
+summary(MultivariateAnalysis.CSS.PROCURE)
+
+#obtaining c-index
+MultivariateAnalysis.CSS.PROCURE=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pT_stage+pN_stage+PredictionCaseLevel,data=data_test_cases,x=TRUE,y=TRUE, )
+summary(MultivariateAnalysis.CSS.PROCURE)
+AIC(MultivariateAnalysis.CSS.PROCURE)
+BIC(MultivariateAnalysis.CSS.PROCURE)
+
+## PLCO ##
+MultivariateAnalysis.CSS.PLCO=coxphw(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~GS_RPE+PredictionCaseLevel,data=data_test_cases,robust=TRUE)
+summary(MultivariateAnalysis.CSS.PLCO)
+
+#obtaining c-index
+MultivariateAnalysis.CSS.PLCO=coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~GS_RPE+PredictionCaseLevel,data=data_test_cases,x=TRUE,y=TRUE, )
+summary(MultivariateAnalysis.CSS.PLCO)
+
+# --- NESTED PARTIAL LIKELIHOOD RATIO TEST  --- #
+## CPCBN ##
+cpltest_full_model <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~Risk_Group+GG_RPE+pT_stage,data=data_test_cases,x=TRUE,y=TRUE)
+summary(pltest_full_model)
+AIC(pltest_full_model)
+BIC(pltest_full_model)
+
+pltest_basemodel_w_Risk_Group <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~Risk_Group+pT_stage,data=data_test_cases,x=TRUE,y=TRUE)
+summary(pltest_basemodel_w_Risk_Group)
+AIC(pltest_basemodel_w_Risk_Group)
+BIC(pltest_basemodel_w_Risk_Group)
+
+pltest_basemodel_w_GG_RPE <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~~GG_RPE+pT_stage,data=data_test_cases,x=TRUE,y=TRUE)
+summary(pltest_basemodel_w_GG_RPE)
+AIC(pltest_basemodel_w_GG_RPE)
+BIC(pltest_basemodel_w_GG_RPE)
+
+pltest_basemodel <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pT_stage,data=data_test_cases,x=TRUE,y=TRUE)
+summary(pltest_basemodel)
+AIC(pltest_basemodel)
+BIC(pltest_basemodel)
+
+plrtest(pltest_full_model,pltest_basemodel_w_Risk_Group, nested = T)
+plrtest(pltest_full_model,pltest_basemodel_w_GG_RPE, nested = T)
+plrtest(pltest_full_model,pltest_basemodel, nested = T)
+
+## PROCURE ##
+#NOTE: Risk_Group and GG_RPE is normalized [0,1] and treated as continues variables. The reason: no event in low-risk and GG1.
+pltest_full_model <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~Risk_Group_norm+GG_RPE_norm+pT_stage+pN_stage,data=data_test_cases,x=TRUE,y=TRUE)
+summary(pltest_full_model)
+AIC(pltest_full_model)
+BIC(pltest_full_model)
+
+pltest_basemodel_w_Risk_Group <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~Risk_Group_norm+pT_stage+pN_stage,data=data_test_cases,x=TRUE,y=TRUE)
+summary(pltest_basemodel_w_Risk_Group)
+AIC(pltest_basemodel_w_Risk_Group)
+BIC(pltest_basemodel_w_Risk_Group)
+
+pltest_basemodel_w_GG_RPE <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~GG_RPE_norm+pT_stage+pN_stage,data=data_test_cases,x=TRUE,y=TRUE)
+summary(pltest_basemodel_w_GG_RPE)
+AIC(pltest_basemodel_w_GG_RPE)
+BIC(pltest_basemodel_w_GG_RPE)
+
+pltest_basemodel <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~pT_stage+pN_stage,data=data_test_cases,x=TRUE,y=TRUE)
+summary(pltest_basemodel)
+AIC(pltest_basemodel)
+BIC(pltest_basemodel)
+
+plrtest(pltest_full_model,pltest_basemodel_w_Risk_Group, nested = T)
+plrtest(pltest_full_model,pltest_basemodel_w_GG_RPE, nested = T)
+plrtest(pltest_full_model,pltest_basemodel, nested = T)
+
+## PLCO ##
+pltest_Risk_Group <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~Risk_Group_norm,data=data_test_cases,x=TRUE,y=TRUE)
+summary(pltest_Risk_Group)
+AIC(pltest_Risk_Group)
+BIC(pltest_Risk_Group)
+
+pltest_GG_RPE <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~GG_RPE_norm,data=data_test_cases,x=TRUE,y=TRUE)
+summary(pltest_GG_RPE)
+AIC(pltest_GG_RPE)
+BIC(pltest_GG_RPE)
+
+plrtest(pltest_Risk_Group,pltest_GG_RPE, nested = F)
+
+# --- KM PLOTS --- #
+# APPLICABLE TO ALL Cohorts
 ##---------- CSS --------##
 # -------- Risk groups ------- #
 km_trt_fit_test_set_all_Risk_Group_CSS <- survfit(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH) ~Risk_Group  , data=data_test_cases)
@@ -293,3 +478,27 @@ ggsurv_km_test_set_GG_CSS <- ggsurvplot(
   surv.median.line = "hv"  # add the median survival pointer.
 )
 ggsurv_km_test_set_GG_CSS
+# --------     prostate pathologic stage - PLCO      ------- #
+km_trt_fit_test_set_all_prostate_pathologic_stage <- survfit(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH) ~prostate_pathologic_stage  , data=data_test_cases)
+summary(km_trt_fit_test_set_all_prostate_pathologic_stage_CSS)
+
+ggsurv_km_test_set_prostate_pathologic_stage_CSS <- ggsurvplot(
+  km_trt_fit_test_set_all_prostate_pathologic_stage,                     # survfit object with calculated statistics.
+  data = data_test_cases,             # data used to fit survival curves.
+  risk.table = TRUE,       # show risk table.
+  pval = TRUE,             # show p-value of log-rank test.
+  conf.int = TRUE,         # show confidence intervals for 
+  palette = "jco",
+  xlab = "Time from curative treatment in months",   # customize X axis label.
+  ylab = "Cancer-specific Survival probability",   # customize Y axis label.
+  break.time.by = 12,     # break X axis in time intervals by 500.
+  ggtheme = theme_light(), # customize plot and risk table with a theme.
+  risk.table.y.text.col = T,# colour risk table text annotations.
+  risk.table.height = 0.2, # the height of the risk table
+  risk.table.y.text = FALSE,# show bars instead of names in text annotations
+  ncensor.plot = TRUE,      # plot the number of censored subjects at time t
+  ncensor.plot.height = 0.2,
+  conf.int.style = "step",  # customize style of confidence intervals
+  surv.median.line = "hv"  # add the median survival pointer.
+)
+ggsurv_km_test_set_prostate_pathologic_stage_CSS
