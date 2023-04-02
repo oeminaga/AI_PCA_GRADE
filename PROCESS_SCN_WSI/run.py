@@ -26,7 +26,7 @@ if __name__=="__main__":
     model=LoadModel(weight_file)
     data={"filename":[],
     "score":[]}
-    X=HistoImage(fln, batch_size=16, overlap_rate=(0.5,0.5))
+    X=HistoImage(fln, batch_size=16, overlap_rate=(0.5,0.5),target_magnification=10)
     P=model.predict(X, verbose=0, workers=4)
     fl_npy=fl.replace("scn", "npy")
     data["filename"].append(fl)
