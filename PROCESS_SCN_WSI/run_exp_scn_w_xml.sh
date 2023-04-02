@@ -1,3 +1,3 @@
-get_file_list.py
-main_10x_50_50.py
-merge.py
+python get_file_list_from_the_folder_for_xml_scn.py
+python main.py
+python merge.py
