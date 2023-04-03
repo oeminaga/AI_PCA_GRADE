@@ -66,12 +66,13 @@ for (f in unique(data_test$slide_id)){
 #We create a dataframe with the mean of patches for each slide
 data_test_slide=data.frame(PID=patient_id_list,slide_id=slide_id_list, score=vl_list)
 
+#We calculate the mean of slides for each case
 vl_case_pred = c()
 for (f in names(count)){
   vl=data_test_slide$score[data_test_slide$PID==f]
   vl_case_pred =c(vl_case_pred ,mean(vl))
 }
-
+#Integrate this information in the case-level dataframe
 data_test_cases=data_test[fir,]
 data_test_cases$PredictionCaseLevel=vl_case_pred
 '''
