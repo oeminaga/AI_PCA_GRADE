@@ -41,10 +41,6 @@ patches_data=data_test[,c("Patch_0","Patch_1","Patch_2","Patch_3","Patch_4","Pat
 data_test$PredictionScore=rowMeans(patches_data)
 data_test=data_test[data_test$Interval.RP.to.BCR.or.last.contact.death>0,]
 
-#### FOR WSI PATCHES ####
-# We took the score mean of the patches per case
-# data_test$PredictionScore=data_test$score
-
 #### CASE-LEVEL PREDICTION
 vl_case_pred = c()
 for (f in names(count)){
@@ -54,6 +50,32 @@ for (f in names(count)){
 
 data_test_cases=data_test[fir,]
 data_test_cases$PredictionCaseLevel=vl_case_pred
+
+#### FOR WSI PATCHES ####
+'''
+#We calculate the mean of patches for each slide
+vl_list=c()
+slide_id_list=c()
+patient_id_list=c()
+for (f in unique(data_test$slide_id)){
+  vl=data_test$score[data_test$slide_id==f] 
+  vl_list=c(vl_list,mean(vl))
+  slide_id_list=c(slide_id_list,f)
+  patient_id_list=c(patient_id_list,data_test$PID[data_test$slide_id==f][1])
+}
+#We create a dataframe with the mean of patches for each slide
+data_test_slide=data.frame(PID=patient_id_list,slide_id=slide_id_list, score=vl_list)
+
+vl_case_pred = c()
+for (f in names(count)){
+  vl=data_test_slide$score[data_test_slide$PID==f]
+  vl_case_pred =c(vl_case_pred ,mean(vl))
+}
+
+data_test_cases=data_test[fir,]
+data_test_cases$PredictionCaseLevel=vl_case_pred
+'''
+
 
 #### TMA CORE LEVEL EVALUATION ####
 cox_score_spots <- coxph(Surv(Interval.RP.to.BCR.or.last.contact.death,BCR_status)~PredictionScore,data=data_test,c(data_test$W),x=TRUE,y=TRUE, )
