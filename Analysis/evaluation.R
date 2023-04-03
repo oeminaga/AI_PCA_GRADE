@@ -42,7 +42,8 @@ data_test$PredictionScore=rowMeans(patches_data)
 data_test=data_test[data_test$Interval.RP.to.BCR.or.last.contact.death>0,]
 
 #### FOR WSI PATCHES ####
-# We took the score mean of the patches per case as shown below and then we used the CHAID algorithm to categorize the patients into 4 groups
+# We took the score mean of the patches per case
+# data_test$PredictionScore=data_test$score
 
 #### CASE-LEVEL PREDICTION
 vl_case_pred = c()
