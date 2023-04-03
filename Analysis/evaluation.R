@@ -431,11 +431,11 @@ BIC(pltest_GG_RPE)
 plrtest(pltest_Risk_Group,pltest_GG_RPE, nested = F)
 
 # --- KM PLOTS --- #
-# APPLICABLE TO ALL Cohorts
+# ABSTRACT - APPLICABLE TO ALL Cohorts
 ##---------- CSS --------##
 # -------- Risk groups ------- #
 km_trt_fit_test_set_all_Risk_Group_CSS <- survfit(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH) ~Risk_Group  , data=data_test_cases)
-summary(km_trt_fit_test_set_all_Risk_Group_CSS)
+summary(km_trt_fit_test_set_all_Risk_Group_CSS) #READ 5-, 10-, 15- year survival rates
 
 ggsurv_km_test_set_Risk_Group_CSS <- ggsurvplot(
   km_trt_fit_test_set_all_Risk_Group_CSS,                     # survfit object with calculated statistics.
