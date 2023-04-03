@@ -118,6 +118,7 @@ UnivariateAnalysis.PSA_level=coxphw(Surv(Interval.RP.to.BCR.or.last.contact.deat
 UnivariateAnalysis.GG_RPE=coxphw(Surv(Interval.RP.to.BCR.or.last.contact.death,BCR_status)~GG_RPE,data=data_test_cases,robust=TRUE)
 UnivariateAnalysis.PredictionCaseLevel=coxphw(Surv(Interval.RP.to.BCR.or.last.contact.death,BCR_status)~PredictionCaseLevel,data=data_test_cases,robust=TRUE)
 # NOTE: FOR PROCURE, we considerd PSA_Level, pN_stage, pT_stage, PSM_status in addition to GG_RPE, Risk_Group or PredictionCaseLevel#
+
 summary(UnivariateAnalysis.AgeAtDiagnosis)
 summary(UnivariateAnalysis.Risk_Group)
 summary(UnivariateAnalysis.GG_RPE)
