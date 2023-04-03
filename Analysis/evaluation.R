@@ -364,12 +364,14 @@ summary(MultivariateAnalysis.CSS.PLCO)
 
 # --- NESTED PARTIAL LIKELIHOOD RATIO TEST  --- #
 ## CPCBN ##
-cpltest_full_model <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~Risk_Group+GG_RPE+pT_stage,data=data_test_cases,x=TRUE,y=TRUE)
+#NOTE: Risk_Group is normalized [0,1] and treated as continues variable. The reason: no event in low-risk.
+
+cpltest_full_model <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~Risk_Group_nrom+GG_RPE+pT_stage,data=data_test_cases,x=TRUE,y=TRUE)
 summary(pltest_full_model)
 AIC(pltest_full_model)
 BIC(pltest_full_model)
 
-pltest_basemodel_w_Risk_Group <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~Risk_Group+pT_stage,data=data_test_cases,x=TRUE,y=TRUE)
+pltest_basemodel_w_Risk_Group <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~Risk_Group_nrom+pT_stage,data=data_test_cases,x=TRUE,y=TRUE)
 summary(pltest_basemodel_w_Risk_Group)
 AIC(pltest_basemodel_w_Risk_Group)
 BIC(pltest_basemodel_w_Risk_Group)
@@ -389,7 +391,7 @@ plrtest(pltest_full_model,pltest_basemodel_w_GG_RPE, nested = T)
 plrtest(pltest_full_model,pltest_basemodel, nested = T)
 
 ## PROCURE ##
-#NOTE: Risk_Group and GG_RPE is normalized [0,1] and treated as continues variables. The reason: no event in low-risk and GG1.
+#NOTE: Risk_Group and GG_RPE are normalized [0,1] and treated as continues variables. The reason: no event in low-risk and GG1.
 pltest_full_model <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~Risk_Group_norm+GG_RPE_norm+pT_stage+pN_stage,data=data_test_cases,x=TRUE,y=TRUE)
 summary(pltest_full_model)
 AIC(pltest_full_model)
@@ -415,12 +417,13 @@ plrtest(pltest_full_model,pltest_basemodel_w_GG_RPE, nested = T)
 plrtest(pltest_full_model,pltest_basemodel, nested = T)
 
 ## PLCO ##
+#NOTE: Risk_Group is normalized [0,1] and treated as continues variable. The reason: no event in low-risk.
 pltest_Risk_Group <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~Risk_Group_norm,data=data_test_cases,x=TRUE,y=TRUE)
 summary(pltest_Risk_Group)
 AIC(pltest_Risk_Group)
 BIC(pltest_Risk_Group)
 
-pltest_GG_RPE <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~GG_RPE_norm,data=data_test_cases,x=TRUE,y=TRUE)
+pltest_GG_RPE <- coxph(Surv(Follow.up.Interval.last.contact.or.death.and.RP, DEATH)~GG_RPE,data=data_test_cases,x=TRUE,y=TRUE)
 summary(pltest_GG_RPE)
 AIC(pltest_GG_RPE)
 BIC(pltest_GG_RPE)
