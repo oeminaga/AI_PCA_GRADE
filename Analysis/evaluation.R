@@ -89,8 +89,9 @@ plot(cal)
 #### CATEGORIZATION #####
 ### USE the CHAID algorithms provided by SPSS and use the cutoffs to categorize the patients
 ### Categories are: [0,0.06),[0.06, 0.43), [0.43,0.75), [0.75,1]
-groups_risk_=cut(data_test_cases$PredictionCaseLevel, breaks = c(0,0.06, 0.43,0.75,1),
+groups_risk_=cut(data_test_cases$PredictionCaseLevel, breaks = c(0,0.06, 0.43,0.75,1.1),
                 labels = c("0-5","6-42","43-74", "75-100"),
+                right = FALSE,
                 include.lowest = TRUE)
 data_test_cases$Risk_Group=groups_risk_
 
