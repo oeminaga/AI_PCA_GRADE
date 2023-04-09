@@ -209,13 +209,13 @@ class HistoImage(tf.keras.utils.Sequence):
                     per_red_background = non_z_count_b/total_count
                     if per_red_background > 0.5:
                         continue
-                    '''
+                    
                     if DebugModeV2:
                         plt.imshow(bg_img, cmap="gray")
                         plt.show()
                         plt.imshow(bg_img>background_color, cmap="gray")
                         plt.show()
-                    '''
+                    
                     non_z_count_ = np.count_nonzero(bg_img == 0)
                     non_z_count = np.count_nonzero(
                         bg_img > background_color)+non_z_count_

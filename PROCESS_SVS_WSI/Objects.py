@@ -2,7 +2,7 @@
 import xml.etree.ElementTree as ET
 import numpy as np
 import os
-# os.add_dll_directory(r".\openslide-win64-20221111\bin")
+# os.add_dll_directory(r".\openslide-win64-20221111\bin") #<- needed the script runs on MS Windows 
 import openslide
 import cv2
 from openslide.deepzoom import DeepZoomGenerator
