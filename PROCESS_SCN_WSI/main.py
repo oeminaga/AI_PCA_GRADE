@@ -26,4 +26,4 @@ def Run(fl_info):
 
 
 files_to_run = [(fl, f"{folder}/{fl}") for fl in get_only_files_w_xml]
-Parallel(n_jobs=2)(delayed(Run)(itm) for itm in tqdm(files_to_run)) #You can increase the n_jobs based on avaiable CPU resources
+Parallel(n_jobs=2)(delayed(Run)(itm) for itm in tqdm(files_to_run)) #You can increase the n_jobs based on your CPU resources
