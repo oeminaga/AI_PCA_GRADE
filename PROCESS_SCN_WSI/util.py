@@ -30,58 +30,52 @@ def GetMaskWithReference(ref, size=(512, 512), threshold=2, channel=0, strategy=
         ref_img = np.array(ref.get_thumbnail(size))
     else:
         ref_img = ref
-    ref_img = ref_img[..., channel]
-    mask = np.zeros_like(ref_img)
 
-    mask[ref_img >= threshold] = 1
+    ref_img = ref_img[..., channel]
+    mask = np.zeros_like(ref_img, dtype=np.uint8)
+
+    cv2.threshold(ref_img, threshold, 1, cv2.THRESH_BINARY, mask=mask)
+
     if strategy == 1:
-        mask = cv2.dilate(mask, np.ones((2, 2), np.uint8))
-        mask[mask >= 0.5] = 1
-        mask[mask < 0.5] = 0
-    if strategy == 2:
-        mask = cv2.dilate(mask, np.ones((4, 4), np.uint8))
-        mask[mask >= 0.5] = 1
-        mask[mask < 0.5] = 0
-    if strategy == 0:
-        mask = np.array(Image.fromarray(mask).filter(
-            ImageFilter.GaussianBlur(4)))
-        mask[mask >= 0.5] = 1
-        mask[mask < 0.5] = 0
+        cv2.dilate(mask, np.ones((2, 2), np.uint8), mask=mask)
+    elif strategy == 2:
+        cv2.dilate(mask, np.ones((4, 4), np.uint8), mask=mask)
+    else:
+        mask = cv2.GaussianBlur(mask, (0, 0), 4)
+
+    mask = (mask >= 0.5).astype(np.uint8)
+
     return mask
 
 
 def GetMask(img, DebugMode=False):
-    # img = openslide.OpenSlide(filename=filename)
     img = img.associated_images["thumbnail"]
-    img_x = img.filter(ImageFilter.GaussianBlur(8))
-    rgb = np.array(img_x.convert("RGB")).astype(np.uint8)
+    rgb = np.array(img.convert("RGB")).astype(np.uint8)
+
+    # HLS thresholding
     hls = cv2.cvtColor(rgb, cv2.COLOR_RGB2HLS)
-    mask = 255 - \
-        cv2.inRange(hls, np.array([0, 225, 0]), np.array([255, 255, 255]))
-    rgb = cv2.bitwise_and(rgb, rgb, mask=mask)
-    # BLUE
+    mask_hls = cv2.inRange(hls, np.array(
+        [0, 225, 0]), np.array([255, 255, 255]))
+
+    # HSV thresholding
     hsv = cv2.cvtColor(rgb, cv2.COLOR_RGB2HSV)
-    lwr = np.array([90, 50, 50])
-    upr = np.array([130, 255, 255])
-    msk = cv2.inRange(hsv, lwr, upr)
+    mask_hsv_blue = cv2.inRange(hsv, np.array(
+        [90, 50, 50]), np.array([130, 255, 255]))
+    mask_hsv_red = cv2.inRange(hsv, np.array([0, 100, 100]), np.array([10, 255, 255])) \
+        + cv2.inRange(hsv, np.array([160, 100, 100]),
+                      np.array([180, 255, 255]))
+    mask_hsv = cv2.bitwise_or(mask_hsv_blue, mask_hsv_red)
 
-    mask = mask-msk
-    mask[mask < 0] = 0
-    hsv = cv2.cvtColor(rgb, cv2.COLOR_RGB2HSV)
-    hsv = cv2.bitwise_and(hsv, hsv, mask=mask)
-    msk = cv2.inRange(hsv, (36, 0, 0), (90, 255, 255))
+    # Combine masks and erode/dilate
+    mask = cv2.bitwise_and(mask_hls, mask_hsv)
+    mask = cv2.GaussianBlur(mask, (0, 0), 8)
+    mask = cv2.erode(mask, np.ones((5, 5), np.uint8), iterations=1)
+    mask = cv2.dilate(mask, np.ones((5, 5), np.uint8), iterations=1)
 
-    mask = mask-msk
-    mask[mask < 0] = 0
-
-    kernel = np.ones((5, 5), np.uint8)
-    mask = cv2.erode(mask, kernel, iterations=1)
-    mask = cv2.dilate(mask, kernel, iterations=1)
-    # img=np.array(img.convert("RGB"))
-    # res = cv2.bitwise_and(img,img, mask= mask)
     if DebugMode:
-        plt.imshow(mask)
-        plt.show()
+        cv2.imshow('mask', mask)
+        cv2.waitKey(0)
+
     return mask
 
 
