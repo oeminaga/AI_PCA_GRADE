@@ -1,9 +1,10 @@
-#%%
+# %%
+import pandas as pd
 import gc
 import os
 import shutil
-#%%
-folder=r"../../Diagnostic_image/"
+# %%
+folder = r"../../Diagnostic_image/"
 
 files_list = {}
 for dirpath, dirnames, filenames in os.walk(folder):
@@ -14,27 +15,26 @@ for dirpath, dirnames, filenames in os.walk(folder):
             check_files_xml.append(filename)
         if filename.endswith(".svs"):
             check_files_svs.append(filename)
-    if len(check_files_xml)==1 and len(check_files_svs)==1:
-        files_list[f"{dirpath}/{check_files_svs[0]}"]=f"{dirpath}/{check_files_xml[0]}"
-#%%
+    if len(check_files_xml) == 1 and len(check_files_svs) == 1:
+        files_list[f"{dirpath}/{check_files_svs[0]}"] = f"{dirpath}/{check_files_xml[0]}"
+# %%
 len(files_list)
 # %%
 ID_file = []
 ID_Replicate = []
 ID_FILENAME = []
-CASE_ID  =[]
+CASE_ID = []
 Filename_path = []
 Filename_xml = []
 for key in files_list:
-    filename=os.path.basename(key)
-    ID_s=filename.split(".")[0]
+    filename = os.path.basename(key)
+    ID_s = filename.split(".")[0]
     ID_file.append(ID_s)
     ID_FILENAME.append(filename)
     Filename_path.append(key)
     Filename_xml.append(files_list[key])
-import pandas as pd
 pd.DataFrame({
-    "CASE_ID" : ID_file,
+    "CASE_ID": ID_file,
     "FilenameID": ID_FILENAME,
     "Filename": Filename_path,
     "Annotation": Filename_xml
