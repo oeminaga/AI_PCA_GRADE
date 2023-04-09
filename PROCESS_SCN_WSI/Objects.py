@@ -267,7 +267,7 @@ class HistoImage(tf.keras.utils.Sequence):
 UnitTest = False
 if UnitTest:
     img = HistoImage(
-        "../Prostate/Slide-0031718_TI05136 4001.svs", verbose=1299)
+        "../Prostate/Slide-01.svs", verbose=1299)
     print(len(img))
     for batch in img:
         for i in range(len(batch)):
