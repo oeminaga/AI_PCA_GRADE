@@ -3,6 +3,8 @@
 ## CONTENT
 * You need a source-code editor. Please Use for example Visual Studio Code</br>
 To Download: https://code.visualstudio.com
+* Python ≥3.8
+* Jupyter notebook (How to install: https://jupyter.org/install)
 
 * Packages installation:
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/install_packages.sh</br>
