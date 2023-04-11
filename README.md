@@ -26,7 +26,7 @@ To Download: https://code.visualstudio.com
 * Statistical analyses -abstract version for clarity- </br>
   * Survival analyses and comparsion of cox models:
     </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/Analysis/evaluation.R</br>
-    -Please use R Studio to open this file. To install, please follow the instruction given in the link [https://posit.co/download/rstudio-desktop/] here- 
+    -Please use R Studio to open this file. To install, please follow the instruction given in the link [https://posit.co/download/rstudio-desktop/](here)- 
   * Distribution of 64 representation features for our novel model:</br>
     https://github.com/oeminaga/AI_PCA_GRADE/blob/main/Analysis/FeatureDistributionAnalysis.ipynb</br>
 
