@@ -1,8 +1,6 @@
 # Artificial Intelligence Unravels Interpretable Malignancy Grades of Prostate Cancer on Histology Images
 
-THE SCRIPTS 📝 ARE:
-</br>
-
+## CONTENT
 * Packages installation:
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/install_packages.sh</br>
 
