@@ -13,9 +13,9 @@ THE SCRIPTS 📝 ARE:
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/main_notebook_for_model_development.ipynb</br>
 
 * Inference on whole-slide images
- * SCN files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SCN_WSI
- * SVS files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SVS_WSI</br>
- * TIFF files: ⚙️🚧
+   * SCN files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SCN_WSI
+   * SVS files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SVS_WSI</br>
+   * TIFF files: ⚙️🚧
 
 * Statistical analyses -abstract version for clarity- </br>
   * Survival analyses and comparsion of cox models
