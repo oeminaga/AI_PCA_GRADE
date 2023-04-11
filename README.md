@@ -12,7 +12,7 @@ THE SCRIPTS 📝 ARE:
 * Model training and Inference on TMA images
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/main_notebook_for_model_development.ipynb</br>
 
-* Inference on whole-slide images (xml annotation file is required. Only the ImageScope xml format is accepted)
+* Inference on whole-slide images (the ImageScope xml annotation file is required)
    * SCN files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SCN_WSI
    * SVS files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SVS_WSI</br>
    * TIFF files: ⚙️🚧
