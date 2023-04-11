@@ -22,7 +22,7 @@ args = parser.parse_args()
 if __name__ == "__main__":
     fln = str(args.path)
     fl = str(args.filename)
-    weight_file = "./weight_98.h5"
+    weight_file = "./weight.h5"
     model = LoadModel(weight_file)
     data = {"filename": [],
             "score": []}
