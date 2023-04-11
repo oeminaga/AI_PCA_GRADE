@@ -13,7 +13,7 @@ library(coxphw)
 library(survivalROC)
 library(survminer)
 ####  LOAD FILE ####
-ModelName = "PlexusNET_BCR_10x_BEST_APPROACH_HUE"
+ModelName = "PlexusNET_BCR_10x"
 filename_test_set = paste0("../",ModelName,"_test_set.csv")
 
 data_test <- read_csv(filename_test_set)
