@@ -10,10 +10,8 @@ THE SCRIPTS 📝 ARE:
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/NAS_PlexusNet.ipynb</br>
 
 * Preparation of TMA spot images
-</br>Download QuPath </br>
-https://qupath.github.io
-</br> Please follow the instruction given by Andrew Janowczyk
-http://www.andrewjanowczyk.com/de-array-a-tissue-microarray-tma-using-qupath-and-python/</br>
+   * Download QuPath </br> https://qupath.github.io
+   * Please follow the instruction given by Andrew Janowczyk http://www.andrewjanowczyk.com/de-array-a-tissue-microarray-tma-using-qupath-and-python/</br>
 * Model training and Inference on TMA images
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/main_notebook_for_model_development.ipynb</br>
 
