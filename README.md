@@ -1,8 +1,7 @@
 # Artificial Intelligence Unravels Interpretable Malignancy Grades of Prostate Cancer on Histology Images
 
 ## CONTENT
-* You need a source-code editor. Please Use for example Visual Studio Code</br>
-To Download: https://code.visualstudio.com
+* You need a source-code editor (e.g., Visual Studio Code from https://code.visualstudio.com)
 * Python ≥3.8 (Either built-in or from https://www.python.org)
 * Jupyter notebook (How to install: https://jupyter.org/install)
 
