@@ -28,5 +28,5 @@ THE SCRIPTS 📝 ARE:
   * Distribution of 64 representation features for our novel model:</br>
     https://github.com/oeminaga/AI_PCA_GRADE/blob/main/Analysis/FeatureDistributionAnalysis.ipynb</br>
 
-Please cite the following paper when you use these script
+Please cite the following paper when you use these scripts
 [PAPER]
