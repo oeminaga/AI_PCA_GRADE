@@ -3,7 +3,7 @@
 ## CONTENT
 * You need a source-code editor. Please Use for example Visual Studio Code</br>
 To Download: https://code.visualstudio.com
-* Python ≥3.8
+* Python ≥3.8 (Either built-in or from https://www.python.org)
 * Jupyter notebook (How to install: https://jupyter.org/install)
 
 * Packages installation:
