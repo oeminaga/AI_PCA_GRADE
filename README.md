@@ -11,11 +11,11 @@ THE SCRIPTS 📝 ARE:
 
 * Preparation of TMA spot images
    * Download QuPath </br> https://qupath.github.io
-   * Please follow the instruction given by Andrew Janowczyk http://www.andrewjanowczyk.com/de-array-a-tissue-microarray-tma-using-qupath-and-python/</br>
+   * Please follow the instruction given by Andrew Janowczyk</br>http://www.andrewjanowczyk.com/de-array-a-tissue-microarray-tma-using-qupath-and-python/</br>
 * Model training and Inference on TMA images
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/main_notebook_for_model_development.ipynb</br>
 
-* Inference on whole-slide images (the ImageScope's xml annotation file is required)
+* Inference on whole-slide images (the ImageScope's xml annotation file for cancer lesions is required)
    * Aperio ImageScope (Image Viewer and Annotion Tool): </br>https://www.leicabiosystems.com/us/digital-pathology/manage/aperio-imagescope/</br>
    * SCN files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SCN_WSI
    * SVS files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SVS_WSI</br>
