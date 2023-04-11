@@ -18,7 +18,7 @@ THE SCRIPTS 📝 ARE:
    * TIFF files: ⚙️🚧
 
 * Statistical analyses -abstract version for clarity- </br>
-  * Survival analyses and comparsion of cox models
+  * Survival analyses and comparsion of cox models:
     </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/Analysis/evaluation.R</br>
-  * Distribution of 64 representation features for our novel model</br>
+  * Distribution of 64 representation features for our novel model:</br>
     https://github.com/oeminaga/AI_PCA_GRADE/blob/main/Analysis/FeatureDistributionAnalysis.ipynb</br>
