@@ -16,7 +16,7 @@ THE SCRIPTS 📝 ARE:
    * Aperio ImageScope (Image Viewer and Annotion Tool): </br>https://www.leicabiosystems.com/us/digital-pathology/manage/aperio-imagescope/</br>
    * SCN files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SCN_WSI
    * SVS files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SVS_WSI</br>
-   * TIFF files: ⚙️🚧
+   * TIFF and other formats: ⚙️🚧
 
 * Statistical analyses -abstract version for clarity- </br>
   * Survival analyses and comparsion of cox models:
