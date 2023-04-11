@@ -15,7 +15,7 @@
 * Neural Architecture Search:
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/NAS_PlexusNet.ipynb</br>
 
-* Model training, selection at case level and Inference on TMA images
+* Model training, the model selection based on the case-level performance and Inference on TMA images
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/main_notebook_for_model_development.ipynb</br>
 
 * Inference on whole-slide images (the ImageScope's xml annotation file including the demarcation of cancer lesions is required)
