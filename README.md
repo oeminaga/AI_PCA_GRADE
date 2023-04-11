@@ -18,7 +18,7 @@
 * Model development and inference on TMA images
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/main_notebook_for_model_development.ipynb</br>
 
-* Inference on whole-slide images with support for parallel computing -processing multple images at the same time- (the ImageScope's xml annotation file including the demarcation of cancer lesions is required)
+* Inference on whole-slide images with support for parallel computing -processing multple whole slide images at the same time- (the ImageScope's xml annotation file including the demarcation of cancer lesions is required)
    * Aperio ImageScope (Image Viewer and Annotion Tool): </br>https://www.leicabiosystems.com/us/digital-pathology/manage/aperio-imagescope/</br>
    * SCN files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SCN_WSI
    * SVS files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SVS_WSI</br>
