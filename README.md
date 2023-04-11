@@ -13,7 +13,7 @@ THE SCRIPTS 📝 ARE:
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/main_notebook_for_model_development.ipynb</br>
 
 * Inference on whole-slide images (the ImageScope's xml annotation file is required)
-   * Annotation tool: </br>https://www.leicabiosystems.com/us/digital-pathology/manage/aperio-imagescope/</br>
+   * Aperio ImageScope (Image Viewer and Annotion Tool): </br>https://www.leicabiosystems.com/us/digital-pathology/manage/aperio-imagescope/</br>
    * SCN files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SCN_WSI
    * SVS files: </br>https://github.com/oeminaga/AI_PCA_GRADE/tree/main/PROCESS_SVS_WSI</br>
    * TIFF files: ⚙️🚧
