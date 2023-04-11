@@ -27,5 +27,6 @@
     https://github.com/oeminaga/AI_PCA_GRADE/blob/main/Analysis/FeatureDistributionAnalysis.ipynb</br>
 
 Should you have issues, please open a thread in the issue section.
-</br>Please cite the following paper when you use these scripts
+
+Please cite the following paper when you use these scripts
 [PAPER]
