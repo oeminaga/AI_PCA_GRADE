@@ -6,7 +6,7 @@
 
 * Extraction of TMA core images
    * Download QuPath </br> https://qupath.github.io
-   * Please follow the instruction given by Andrew Janowczyk</br>http://www.andrewjanowczyk.com/de-array-a-tissue-microarray-tma-using-qupath-and-python/</br>
+   * The instruction given by Andrew Janowczyk</br>http://www.andrewjanowczyk.com/de-array-a-tissue-microarray-tma-using-qupath-and-python/</br>
 
 * Neural Architecture Search:
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/NAS_PlexusNet.ipynb</br>
