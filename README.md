@@ -26,5 +26,7 @@
   * Distribution of 64 representation features for our novel model:</br>
     https://github.com/oeminaga/AI_PCA_GRADE/blob/main/Analysis/FeatureDistributionAnalysis.ipynb</br>
 
-Please cite the following paper when you use these scripts
+Should you have issues, please open a thread in the issue section.
+
+</br>Please cite the following paper when you use these scripts
 [PAPER]
