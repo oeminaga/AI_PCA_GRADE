@@ -1,6 +1,9 @@
 # Artificial Intelligence Unravels Interpretable Malignancy Grades of Prostate Cancer on Histology Images
 
 ## CONTENT
+* You need a source-code editor. Please Use for example Visual Studio Code</br>
+To Download: https://code.visualstudio.com
+
 * Packages installation:
 </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/install_packages.sh</br>
 
@@ -23,6 +26,7 @@
 * Statistical analyses -abstract version for clarity- </br>
   * Survival analyses and comparsion of cox models:
     </br>https://github.com/oeminaga/AI_PCA_GRADE/blob/main/Analysis/evaluation.R</br>
+    -Please use R Studio to open this file. To install, please follow the instruction given in the link: https://posit.co/download/rstudio-desktop/ 
   * Distribution of 64 representation features for our novel model:</br>
     https://github.com/oeminaga/AI_PCA_GRADE/blob/main/Analysis/FeatureDistributionAnalysis.ipynb</br>
 
