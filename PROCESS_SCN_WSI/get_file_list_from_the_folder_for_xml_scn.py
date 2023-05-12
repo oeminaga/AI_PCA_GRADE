@@ -4,7 +4,10 @@ import gc
 import os
 import shutil
 # %%
+### ---- MODIFIABLE AREA ---- ####
+### PLEASE CHANGE FOR AUTOMATED READING
 folder = r"../HE_images/"
+### ----END---- ######
 files_svs = [f for f in os.listdir(folder) if f.endswith("scn")]
 # %%
 get_only_files_w_xml = []
