@@ -34,4 +34,4 @@
 Should you have issues, please open a thread in the issue section.
 
 Please cite the following paper when you use these scripts
-[PAPER]
+[PAPER CURRENTLY UNDER REVIEW]
