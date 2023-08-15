@@ -1,12 +1,10 @@
 # %%
 import pandas as pd
-
-# %%
 import os
 # %%
 outcomes = os.listdir("../outcome")
-for outcome in outcomes:
 
+for outcome in outcomes:
     source_ = f"../outcome/{outcome}/csv_prostate/"
     data_collection = []
     for file in os.listdir(source_):
@@ -18,4 +16,3 @@ for outcome in outcomes:
     database["ID_SAMPLE"] = itms
     database[outcome] = database["score"]
     database.to_csv(f"./{outcome}.csv", index=False)
-# %%
