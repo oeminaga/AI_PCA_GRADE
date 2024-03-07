@@ -34,4 +34,4 @@
 Should you have issues, please open a thread in the issue section.
 
 Please cite the following paper when you use these scripts
-[PAPER CURRENTLY UNDER REVIEW]
+[https://www.nature.com/articles/s44303-023-00005-z?utm_source=rct_congratemailt&utm_medium=email&utm_campaign=oa_20240306&utm_content=10.1038/s44303-023-00005-z]
